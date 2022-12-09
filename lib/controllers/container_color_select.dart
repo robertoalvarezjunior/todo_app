@@ -13,30 +13,43 @@ class ContainerColorSelect extends ChangeNotifier {
     this.color3 = false,
     this.color4 = false,
   });
-  //mudar modalsheet pra shoedialog
-  colorIsSelector() {
+  color1IsSelected() {
     if (color1 == true) {
+      color2 = false;
+      color3 = false;
+      color4 = false;
       colorChange = ContainerColors.colors['color1'];
-      color2 = false;
-      color3 = false;
-      color4 = false;
-    } else if (color2 == true) {
-      colorChange = ContainerColors.colors['color2'];
-      color1 = false;
-      color3 = false;
-      color4 = false;
-    } else if (color3 == true) {
-      colorChange = ContainerColors.colors['color3'];
-      color1 = false;
-      color2 = false;
-      color4 = false;
-    } else if (color4 == true) {
-      colorChange = ContainerColors.colors['color4'];
-      color1 = false;
-      color2 = false;
-      color3 = false;
+      notifyListeners();
     }
+  }
 
-    notifyListeners();
+  color2IsSelected() {
+    if (color2 == true) {
+      color1 = false;
+      color3 = false;
+      color4 = false;
+      colorChange = ContainerColors.colors['color2'];
+      notifyListeners();
+    }
+  }
+
+  color3IsSelected() {
+    if (color3 == true) {
+      color1 = false;
+      color2 = false;
+      color4 = false;
+      colorChange = ContainerColors.colors['color3'];
+      notifyListeners();
+    }
+  }
+
+  color4IsSelected() {
+    if (color4 == true) {
+      color1 = false;
+      color2 = false;
+      color3 = false;
+      colorChange = ContainerColors.colors['color4'];
+      notifyListeners();
+    }
   }
 }

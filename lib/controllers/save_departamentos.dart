@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/models/departamentos.dart';
 
 class SaveDepartamentos extends ChangeNotifier {
-  saveDepartamentos(
+  saveDepartment(
       BuildContext context, String title, Color color, Departamentos value) {
     final depart = Departamentos(
       id: Random().nextDouble().toString(),

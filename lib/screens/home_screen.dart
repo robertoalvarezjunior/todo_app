@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/controllers/container_color_select.dart';
 import 'package:todo_app/controllers/save_departamentos.dart';
 import 'package:todo_app/models/departamentos.dart';
-import 'package:todo_app/widgets/modal_sheet.dart';
+import 'package:todo_app/widgets/dialog_department.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -39,6 +38,7 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           e.title!,
                           style: Theme.of(context).textTheme.bodyText1,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
@@ -50,24 +50,11 @@ class HomeScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showModalBottomSheet(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(borderRadius),
-                  topRight: Radius.circular(borderRadius),
-                ),
-              ),
+            showDialog(
               context: context,
-              builder: (context) => Consumer<ContainerColorSelect>(
-                builder: (context, containerColorSelectValue, child) =>
-                    SingleChildScrollView(
-                  padding: MediaQuery.of(context).viewInsets,
-                  child: ModalSheet(
-                    saveDepartamentosValue: saveDepartamentosValue,
-                    departamentosValue: departamentosValue,
-                    containerColorSelectValue: containerColorSelectValue,
-                  ),
-                ),
+              builder: (context) => DialogDepartment(
+                saveDepartmentValue: saveDepartamentosValue,
+                departmentValue: departamentosValue,
               ),
             );
           },

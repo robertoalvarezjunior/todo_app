@@ -45,10 +45,23 @@ class MyApp extends StatelessWidget {
         ),
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-              borderSide: const BorderSide(
-                color: Color(0xff305AFA),
-              )),
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: const BorderSide(
+              color: Color(0xff305AFA),
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(
+              color: Theme.of(context).errorColor,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(
+              color: Theme.of(context).errorColor,
+            ),
+          ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: const BorderSide(
