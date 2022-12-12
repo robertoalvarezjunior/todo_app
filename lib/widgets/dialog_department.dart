@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/container_color_select.dart';
-import 'package:todo_app/controllers/save_departamentos.dart';
+import 'package:todo_app/controllers/save_department.dart';
 import 'package:todo_app/models/container_colors.dart';
-import 'package:todo_app/models/departamentos.dart';
+import 'package:todo_app/models/department.dart';
 
 class DialogDepartment extends StatelessWidget {
   DialogDepartment({
@@ -13,8 +13,8 @@ class DialogDepartment extends StatelessWidget {
     required this.saveDepartmentValue,
     required this.departmentValue,
   }) : super(key: key);
-  final SaveDepartamentos saveDepartmentValue;
-  final Departamentos departmentValue;
+  final SaveDepartment saveDepartmentValue;
+  final Department departmentValue;
   final departmentController = TextEditingController();
   final _departmentKey = GlobalKey<FormFieldState>();
 
@@ -42,7 +42,7 @@ class DialogDepartment extends StatelessWidget {
                   saveDepartmentValue.saveDepartment(
                     context,
                     departmentController.text,
-                    colorChange!,
+                    colorChange ?? ContainerColors.colors['color1']!,
                     departmentValue,
                   );
                 }
@@ -153,7 +153,7 @@ class DialogDepartment extends StatelessWidget {
                   saveDepartmentValue.saveDepartment(
                     context,
                     departmentController.text,
-                    colorChange!,
+                    colorChange ?? ContainerColors.colors['color1']!,
                     departmentValue,
                   );
                 }

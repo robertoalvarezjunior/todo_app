@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/controllers/save_departamentos.dart';
-import 'package:todo_app/models/departamentos.dart';
+import 'package:todo_app/controllers/save_department.dart';
+import 'package:todo_app/models/department.dart';
 import 'package:todo_app/widgets/dialog_department.dart';
+import 'package:todo_app/screens/product_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,11 +14,11 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight) / 3;
     final double itemWidth = size.width;
-    return Consumer2<Departamentos, SaveDepartamentos>(
+    return Consumer2<Department, SaveDepartment>(
       builder: (context, departamentosValue, saveDepartamentosValue, child) =>
           Scaffold(
         appBar: AppBar(
-          title: const Text('Anotações'),
+          title: const Text('Lista Compras'),
           centerTitle: true,
         ),
         body: GridView.count(
@@ -26,12 +27,19 @@ class HomeScreen extends StatelessWidget {
           mainAxisSpacing: 10,
           crossAxisCount: 2,
           childAspectRatio: (itemWidth / itemHeight),
-          children: departamentosValue.departamentosList
+          children: departamentosValue.departmentList
               .map(
                 (e) => ClipRRect(
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductPage(title: e.title),
+                        ),
+                      );
+                    },
                     child: Container(
                       color: e.color,
                       child: Center(

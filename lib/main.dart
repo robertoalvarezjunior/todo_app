@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/container_color_select.dart';
-import 'package:todo_app/controllers/save_departamentos.dart';
-import 'package:todo_app/models/departamentos.dart';
+import 'package:todo_app/controllers/save_department.dart';
+import 'package:todo_app/controllers/save_product.dart';
+import 'package:todo_app/models/department.dart';
+import 'package:todo_app/models/product.dart';
 import 'package:todo_app/screens/home_screen.dart';
 
 void main() {
@@ -11,13 +13,19 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => SaveDepartamentos(),
+          create: (context) => SaveDepartment(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Departamentos(),
+          create: (context) => Department(),
         ),
         ChangeNotifierProvider(
           create: (context) => ContainerColorSelect(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SaveProduct(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Product(),
         ),
       ],
       child: const MyApp(),

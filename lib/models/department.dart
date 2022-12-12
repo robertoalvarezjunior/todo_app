@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Departamentos extends ChangeNotifier {
+class Department extends ChangeNotifier {
   String? id;
   String? title;
   Color? color;
-  Departamentos({
+  Department({
     this.id,
     this.title,
     this.color,
   });
 
-  List<Departamentos> departamentosList = [];
+  List<Department> departmentList = [];
 }
