@@ -7,16 +7,17 @@ import 'package:todo_app/widgets/dialog_product.dart';
 class ProductPage extends StatelessWidget {
   const ProductPage({
     super.key,
-    required this.title,
   });
-  final String? title;
+
+  static const routeProductName = '/productPage';
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Product;
     return Consumer2<Product, SaveProduct>(
       builder: (context, productValue, saveProductValue, child) => Scaffold(
         appBar: AppBar(
-          title: Text("$title"),
+          title: Text('${args.titulo}'),
           centerTitle: true,
         ),
         body: ListView(

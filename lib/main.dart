@@ -7,6 +7,7 @@ import 'package:todo_app/controllers/save_product.dart';
 import 'package:todo_app/models/department.dart';
 import 'package:todo_app/models/product.dart';
 import 'package:todo_app/screens/home_screen.dart';
+import 'package:todo_app/screens/product_page.dart';
 
 void main() {
   runApp(
@@ -40,6 +41,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        ProductPage.routeProductName: (context) => const ProductPage(),
+      },
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -78,7 +84,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/save_department.dart';
 import 'package:todo_app/models/department.dart';
+import 'package:todo_app/models/product.dart';
 import 'package:todo_app/widgets/dialog_department.dart';
 import 'package:todo_app/screens/product_page.dart';
 
@@ -33,11 +34,10 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductPage(title: e.title),
-                        ),
+                        ProductPage.routeProductName,
+                        arguments: Product(titulo: e.title),
                       );
                     },
                     child: Container(
