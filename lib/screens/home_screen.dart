@@ -4,8 +4,8 @@ import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/save_department.dart';
 import 'package:todo_app/models/department.dart';
 import 'package:todo_app/models/product.dart';
-import 'package:todo_app/widgets/dialog_department.dart';
 import 'package:todo_app/screens/product_page.dart';
+import 'package:todo_app/widgets/dialog_department.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

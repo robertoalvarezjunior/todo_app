@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/container_color_select.dart';
 import 'package:todo_app/controllers/save_department.dart';
@@ -9,12 +10,13 @@ import 'package:todo_app/models/product.dart';
 import 'package:todo_app/screens/home_screen.dart';
 import 'package:todo_app/screens/product_page.dart';
 
-void main() {
+void main() async {
+  Database db = await openDatabase('lista_compras.db');
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => SaveDepartment(),
+          create: (context) => SaveDepartment(db: db),
         ),
         ChangeNotifierProvider(
           create: (context) => Department(),

@@ -17,7 +17,9 @@ class ProductPage extends StatelessWidget {
     return Consumer2<Product, SaveProduct>(
       builder: (context, productValue, saveProductValue, child) => Scaffold(
         appBar: AppBar(
-          title: Text('${args.titulo}'),
+          title: Text(
+            '${args.titulo}',
+          ),
           centerTitle: true,
         ),
         body: ListView(
