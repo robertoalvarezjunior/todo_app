@@ -37,14 +37,14 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         ProductPage.routeProductName,
-                        arguments: Product(titulo: e.title),
+                        arguments: Product(titileProduct: e.titleDepart),
                       );
                     },
                     child: Container(
-                      color: e.color,
+                      color: e.colorDepart,
                       child: Center(
                         child: Text(
-                          e.title!,
+                          e.titleDepart!,
                           style: Theme.of(context).textTheme.bodyText1,
                           textAlign: TextAlign.center,
                         ),

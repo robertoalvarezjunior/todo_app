@@ -21,13 +21,21 @@ class DB {
     return await openDatabase(
       path,
       version: 1,
-      onCreate: (db, version) {},
+      onCreate: _createDB,
     );
   }
 
-  Future<void> criarBanco(Database db) async {
-    for (String query in q) {
-      await db.execute(query);
-    }
+  _createDB(Database db, version) async {
+    await db.execute('''
+    CREATE TABLE casa (
+      id_depart INTEGER PRIMARY KEY AUTOINCEMENT,
+      title_depart TEXT,
+      color_depart TEXT,
+      id_product INTEGER PRIMARY KEY AUTOINCREMENT,
+      title_product TEXT,
+      description_product TEXT,
+      price_product REAL
+    );
+''');
   }
 }

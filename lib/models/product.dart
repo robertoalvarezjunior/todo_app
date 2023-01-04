@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class Product extends ChangeNotifier {
   Product({
-    this.id,
-    this.titulo,
-    this.descricao,
-    this.preco,
+    this.idProduct,
+    this.titileProduct,
+    this.descriptionProduct,
+    this.priceProduct,
   });
-  String? id;
-  String? titulo;
-  String? descricao;
-  double? preco;
+  String? idProduct;
+  String? titileProduct;
+  String? descriptionProduct;
+  double? priceProduct;
 
   List<Product> productList = [];
 }

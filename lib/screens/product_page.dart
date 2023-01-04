@@ -18,7 +18,7 @@ class ProductPage extends StatelessWidget {
       builder: (context, productValue, saveProductValue, child) => Scaffold(
         appBar: AppBar(
           title: Text(
-            '${args.titulo}',
+            '${args.titileProduct}',
           ),
           centerTitle: true,
         ),
@@ -26,8 +26,8 @@ class ProductPage extends StatelessWidget {
             children: productValue.productList
                 .map(
                   (e) => ListTile(
-                    title: Text(e.titulo!),
-                    subtitle: Text(e.descricao!),
+                    title: Text(e.titileProduct!),
+                    subtitle: Text(e.descriptionProduct!),
                   ),
                 )
                 .toList()),

@@ -12,10 +12,10 @@ class SaveProduct extends ChangeNotifier {
     Product value,
   ) {
     final product = Product(
-      id: Random().nextDouble().toString(),
-      titulo: title,
-      descricao: descricao,
-      preco: preco,
+      idProduct: Random().nextDouble().toString(),
+      titileProduct: title,
+      descriptionProduct: descricao,
+      priceProduct: preco,
     );
     value.productList.add(product);
     Navigator.of(context).pop();

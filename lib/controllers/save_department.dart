@@ -7,9 +7,9 @@ class SaveDepartment extends ChangeNotifier {
   saveDepartment(
       BuildContext context, String title, Color color, Department value) async {
     final depart = Department(
-      id: Random().nextDouble().toString(),
-      title: title,
-      color: color,
+      idDepart: Random().nextDouble().toString(),
+      titleDepart: title,
+      colorDepart: color,
     );
     value.departmentList.add(depart);
     Navigator.of(context).pop();
