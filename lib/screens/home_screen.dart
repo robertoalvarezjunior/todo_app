@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/save_department.dart';
+import 'package:todo_app/database/db.dart';
 import 'package:todo_app/models/department.dart';
 import 'package:todo_app/models/product.dart';
 import 'package:todo_app/screens/product_page.dart';
@@ -57,7 +59,22 @@ class HomeScreen extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
+          onPressed: () async {
+            Database db = await DB.instance.database;
+
+            List<Map<String, dynamic>> users = await db.query('casa');
+
+            Future<void> insertUser(Database db, String name) async {
+              // Insere um novo usuário na tabela users
+              await db.insert(
+                'casa',
+                {'title_depart': name},
+                conflictAlgorithm: ConflictAlgorithm.replace,
+              );
+            }
+
+            insertUser(db, 'sala');
+            print(users);
             showDialog(
               context: context,
               builder: (context) => DialogDepartment(

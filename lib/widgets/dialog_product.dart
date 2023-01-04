@@ -81,7 +81,7 @@ class DialogProduct extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_productKey.currentState!.validate()) {
                     final preco = (precoController.text).replaceAll(',', '.');
                     saveProductValue.saveProduct(

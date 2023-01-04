@@ -10,6 +10,7 @@ import 'package:todo_app/screens/home_screen.dart';
 import 'package:todo_app/screens/product_page.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [
