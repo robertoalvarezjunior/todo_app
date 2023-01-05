@@ -28,12 +28,6 @@ class DB {
     await db.execute('''
     CREATE TABLE casa (
       id_depart INTEGER PRIMARY KEY AUTOINCREMENT,
-      title_depart TEXT,
-      color_depart TEXT,
-      id_product INTEGER,
-      title_product TEXT,
-      description_product TEXT,
-      price_product REAL
     );
 ''');
   }

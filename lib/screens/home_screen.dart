@@ -61,26 +61,26 @@ class HomeScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             Database db = await DB.instance.database;
-
+// primeiro criar o banco, depois pedir para printar
             List<Map<String, dynamic>> users = await db
-                .query('test INNER JOIN casa ON test.test_id = test_id');
+                .query('test INNER JOIN casa ON test.casa_id = casa_id');
 
-            Future<void> insertUser(Database db, String name) async {
+            Future<void> insertUser(Database db) async {
               // Insere um novo usuário na tabela users
 
               // await db.execute(
-              //   'CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT, test_id INTEGER, value TEXT, FOREIGN KEY(test_id) REFERENCES casa(id_depart))',
+              //   'CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT, casa_id INTEGER, value TEXT, FOREIGN KEY(casa_id) REFERENCES casa(id_depart))',
               // );
 
               await db.insert(
                 'casa',
-                {'title_depart': name},
+                {'title_depart': 'mesa'},
                 conflictAlgorithm: ConflictAlgorithm.replace,
               );
-              // await db.insert('test', {'test_id': 1, 'value': 'funfu'});
+              await db.insert('test', {'casa_id': 3, 'value': 'teste'});
             }
 
-            await insertUser(db, 'casa');
+            await insertUser(db);
             print(users);
             showDialog(
               context: context,
