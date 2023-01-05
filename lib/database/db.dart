@@ -9,7 +9,6 @@ class DB {
 
   static final DB instance = DB._();
   static Database? _database;
-  static List<String> q = [];
 
   Future<Database> get database async => _database ??= await _initDatabase();
 

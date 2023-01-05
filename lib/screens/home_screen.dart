@@ -62,18 +62,25 @@ class HomeScreen extends StatelessWidget {
           onPressed: () async {
             Database db = await DB.instance.database;
 
-            List<Map<String, dynamic>> users = await db.query('casa');
+            List<Map<String, dynamic>> users = await db
+                .query('test INNER JOIN casa ON test.test_id = test_id');
 
             Future<void> insertUser(Database db, String name) async {
               // Insere um novo usuário na tabela users
+
+              // await db.execute(
+              //   'CREATE TABLE test (id INTEGER PRIMARY KEY AUTOINCREMENT, test_id INTEGER, value TEXT, FOREIGN KEY(test_id) REFERENCES casa(id_depart))',
+              // );
+
               await db.insert(
                 'casa',
                 {'title_depart': name},
                 conflictAlgorithm: ConflictAlgorithm.replace,
               );
+              // await db.insert('test', {'test_id': 1, 'value': 'funfu'});
             }
 
-            insertUser(db, 'sala');
+            await insertUser(db, 'casa');
             print(users);
             showDialog(
               context: context,
