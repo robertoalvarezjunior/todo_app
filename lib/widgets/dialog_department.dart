@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/container_color_select.dart';
 import 'package:todo_app/controllers/save_department.dart';
+import 'package:todo_app/database/db.dart';
+import 'package:todo_app/database/table.dart';
 import 'package:todo_app/models/container_colors.dart';
 import 'package:todo_app/models/department.dart';
 
@@ -147,22 +150,26 @@ class DialogDepartment extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                if (_departmentKey.currentState!.validate()) {
-                  saveDepartmentValue.saveDepartment(
-                    context,
-                    departmentController.text,
-                    colorChange ?? ContainerColors.colors['color1']!,
-                    departmentValue,
-                  );
-                }
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                child: Text(
-                  'Salvar',
-                  style: TextStyle(fontSize: 26),
+            Consumer<TableConfig>(
+              builder: (context, value, child) => ElevatedButton(
+                onPressed: () async {
+                  if (_departmentKey.currentState!.validate()) {
+                    saveDepartmentValue.saveDepartment(
+                      context,
+                      departmentController.text,
+                      colorChange ?? ContainerColors.colors['color1']!,
+                      departmentValue,
+                    );
+                    Database db = await DB.instance.database;
+                    value.createNewTable(departmentController.text, db);
+                  }
+                },
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  child: Text(
+                    'Salvar',
+                    style: TextStyle(fontSize: 26),
+                  ),
                 ),
               ),
             ),

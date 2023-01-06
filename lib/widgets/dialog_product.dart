@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/save_product.dart';
+import 'package:todo_app/database/db.dart';
+import 'package:todo_app/database/table.dart';
 import 'package:todo_app/models/product.dart';
 
 class DialogProduct extends StatelessWidget {
@@ -80,24 +84,30 @@ class DialogProduct extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () async {
-                  if (_productKey.currentState!.validate()) {
-                    final preco = (precoController.text).replaceAll(',', '.');
-                    saveProductValue.saveProduct(
-                      context,
-                      productController.text,
-                      descricaoController.text,
-                      double.parse(preco),
-                      productValue,
-                    );
-                  }
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                  child: Text(
-                    'Salvar',
-                    style: TextStyle(fontSize: 26),
+              Consumer<TableConfig>(
+                builder: (context, value, child) => ElevatedButton(
+                  onPressed: () async {
+                    if (_productKey.currentState!.validate()) {
+                      final preco = double.parse(
+                          (precoController.text).replaceAll(',', '.'));
+                      saveProductValue.saveProduct(
+                        context,
+                        productController.text,
+                        descricaoController.text,
+                        preco,
+                        productValue,
+                      );
+                      Database db = await DB.instance.database;
+                      value.insertNewElement(db, productController.text,
+                          descricaoController.text, preco);
+                    }
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    child: Text(
+                      'Salvar',
+                      style: TextStyle(fontSize: 26),
+                    ),
                   ),
                 ),
               ),

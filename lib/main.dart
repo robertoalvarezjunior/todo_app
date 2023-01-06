@@ -4,6 +4,7 @@ import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/container_color_select.dart';
 import 'package:todo_app/controllers/save_department.dart';
 import 'package:todo_app/controllers/save_product.dart';
+import 'package:todo_app/database/table.dart';
 import 'package:todo_app/models/department.dart';
 import 'package:todo_app/models/product.dart';
 import 'package:todo_app/screens/home_screen.dart';
@@ -28,6 +29,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => Product(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TableConfig(),
         ),
       ],
       child: const MyApp(),

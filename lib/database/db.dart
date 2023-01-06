@@ -26,8 +26,9 @@ class DB {
 
   _createDB(Database db, version) async {
     await db.execute('''
-    CREATE TABLE casa (
-      id_depart INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE list (
+      id_list INTEGER PRIMARY KEY AUTOINCREMENT,
+      t TEXT
     );
 ''');
   }
