@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
-
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/controllers/container_color_select.dart';
-import 'package:todo_app/controllers/save_department.dart';
-import 'package:todo_app/database/db.dart';
-import 'package:todo_app/database/table.dart';
-import 'package:todo_app/models/container_colors.dart';
+import 'package:todo_app/controllers/select_container_color.dart';
+import 'package:todo_app/database/table_functions.dart';
+import 'package:todo_app/models/todo_colors.dart';
 import 'package:todo_app/models/department.dart';
 
 class DialogDepartment extends StatelessWidget {
   DialogDepartment({
     Key? key,
-    required this.saveDepartmentValue,
-    required this.departmentValue,
   }) : super(key: key);
-  final SaveDepartment saveDepartmentValue;
-  final Department departmentValue;
   final departmentController = TextEditingController();
   final _departmentKey = GlobalKey<FormFieldState>();
 
@@ -36,19 +28,12 @@ class DialogDepartment extends StatelessWidget {
           children: [
             TextFormField(
               key: _departmentKey,
-              decoration: const InputDecoration(labelText: 'Título Anotação'),
+              decoration: const InputDecoration(labelText: 'Nome Departamento'),
               controller: departmentController,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
               onFieldSubmitted: (value) {
-                if (_departmentKey.currentState!.validate()) {
-                  saveDepartmentValue.saveDepartment(
-                    context,
-                    departmentController.text,
-                    colorChange ?? ContainerColors.colors['color1']!,
-                    departmentValue,
-                  );
-                }
+                if (_departmentKey.currentState!.validate()) {}
               },
               validator: (value) {
                 if (value!.isEmpty) {
@@ -58,7 +43,7 @@ class DialogDepartment extends StatelessWidget {
               },
             ),
             const SizedBox(height: 10),
-            Consumer<ContainerColorSelect>(
+            Consumer<SelectContainerColor>(
               builder: (context, containerColorSelectValue, child) => Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -79,7 +64,7 @@ class DialogDepartment extends StatelessWidget {
                               ? Colors.black38
                               : Colors.transparent,
                         ),
-                        color: ContainerColors.colors['color1'],
+                        color: ToDoColors.colors['color1'],
                       ),
                     ),
                   ),
@@ -100,7 +85,7 @@ class DialogDepartment extends StatelessWidget {
                               ? Colors.black38
                               : Colors.transparent,
                         ),
-                        color: ContainerColors.colors['color2'],
+                        color: ToDoColors.colors['color2'],
                       ),
                     ),
                   ),
@@ -121,7 +106,7 @@ class DialogDepartment extends StatelessWidget {
                               ? Colors.black38
                               : Colors.transparent,
                         ),
-                        color: ContainerColors.colors['color3'],
+                        color: ToDoColors.colors['color3'],
                       ),
                     ),
                   ),
@@ -142,7 +127,7 @@ class DialogDepartment extends StatelessWidget {
                               ? Colors.black38
                               : Colors.transparent,
                         ),
-                        color: ContainerColors.colors['color4'],
+                        color: ToDoColors.colors['color4'],
                       ),
                     ),
                   ),
@@ -150,18 +135,17 @@ class DialogDepartment extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Consumer<TableConfig>(
+            Consumer<TableFunctions>(
               builder: (context, value, child) => ElevatedButton(
-                onPressed: () async {
+                onPressed: () {
                   if (_departmentKey.currentState!.validate()) {
-                    saveDepartmentValue.saveDepartment(
-                      context,
-                      departmentController.text,
-                      colorChange ?? ContainerColors.colors['color1']!,
-                      departmentValue,
+                    final nameDepartament = departmentController.text;
+                    value.insertList(
+                      Department(
+                          titleDepartment: nameDepartament,
+                          colorDepartment: colorChange.toString()),
                     );
-                    Database db = await DB.instance.database;
-                    value.createNewTable(departmentController.text, db);
+                    Navigator.of(context).pop();
                   }
                 },
                 child: const Padding(

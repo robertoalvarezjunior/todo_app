@@ -26,10 +26,21 @@ class DB {
 
   _createDB(Database db, version) async {
     await db.execute('''
-    CREATE TABLE list (
-      id_list INTEGER PRIMARY KEY AUTOINCREMENT,
-      t TEXT
-    );
-''');
+      CREATE TABLE Department (
+      idDepartment INTEGER PRIMARY KEY AUTOINCREMENT,
+      titleDepartment TEXT,
+      colorDepartment TEXT
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE Items (
+      idItems INTEGER PRIMARY KEY AUTOINCREMENT,
+      titleItems TEXT,
+      descriptionItems TEXT,
+      priceItems REAL,
+      fkIdDepartment INTEGER,
+      FOREIGN KEY (fkIdDepartment) REFERENCES Department(idDepartment) ON DELETE CASCADE
+      ) 
+    ''');
   }
 }

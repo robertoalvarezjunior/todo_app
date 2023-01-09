@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/controllers/container_color_select.dart';
-import 'package:todo_app/controllers/save_department.dart';
-import 'package:todo_app/controllers/save_product.dart';
-import 'package:todo_app/database/table.dart';
-import 'package:todo_app/models/department.dart';
-import 'package:todo_app/models/product.dart';
-import 'package:todo_app/screens/home_screen.dart';
-import 'package:todo_app/screens/product_page.dart';
+import 'package:todo_app/controllers/select_container_color.dart';
+import 'package:todo_app/database/table_functions.dart';
+import 'package:todo_app/view/home_screen.dart';
+import 'package:todo_app/view/item_page.dart';
+import 'package:todo_app/view_model/list_table_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,22 +13,13 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => SaveDepartment(),
+          create: (context) => SelectContainerColor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Department(),
+          create: (context) => TableFunctions(),
         ),
         ChangeNotifierProvider(
-          create: (context) => ContainerColorSelect(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SaveProduct(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => Product(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => TableConfig(),
+          create: (context) => ListTableView(),
         ),
       ],
       child: const MyApp(),
@@ -49,7 +37,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
-        ProductPage.routeProductName: (context) => const ProductPage(),
+        ItemPage.routeItems: (context) => const ItemPage(),
       },
       theme: ThemeData(
         useMaterial3: true,

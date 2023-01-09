@@ -1,32 +1,33 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-class Department extends ChangeNotifier {
-  String? idDepart;
-  String? titleDepart;
-  Color? colorDepart;
+class Department {
+  int? idDepartment;
+  String? titleDepartment;
+  String? colorDepartment;
   Department({
-    this.idDepart,
-    this.titleDepart,
-    this.colorDepart,
+    this.idDepartment,
+    this.titleDepartment,
+    this.colorDepartment,
   });
-
-  List<Department> departmentList = [];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': idDepart,
-      'title': titleDepart,
-      'color': colorDepart?.value,
+      'idDepartment': idDepartment,
+      'titleDepartment': titleDepartment,
+      'colorDepartment': colorDepartment,
     };
   }
 
   factory Department.fromMap(Map<String, dynamic> map) {
     return Department(
-      idDepart: map['id'] != null ? map['id'] as String : null,
-      titleDepart: map['title'] != null ? map['title'] as String : null,
-      colorDepart: map['color'] != null ? Color(map['color'] as int) : null,
+      idDepartment:
+          map['idDepartment'] != null ? map['idDepartment'] as int : null,
+      titleDepartment: map['titleDepartment'] != null
+          ? map['titleDepartment'] as String
+          : null,
+      colorDepartment: map['colorDepartment'] != null
+          ? map['colorDepartment'] as String
+          : '0xff30FAC2',
     );
   }
 

@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/controllers/save_product.dart';
-import 'package:todo_app/database/db.dart';
-import 'package:todo_app/database/table.dart';
-import 'package:todo_app/models/product.dart';
+import 'package:todo_app/database/table_functions.dart';
+import 'package:todo_app/models/items.dart';
 
-class DialogProduct extends StatelessWidget {
-  DialogProduct({
+class DialogItems extends StatelessWidget {
+  DialogItems({
     Key? key,
-    required this.saveProductValue,
-    required this.productValue,
   }) : super(key: key);
-  final SaveProduct saveProductValue;
-  final Product productValue;
-  final productController = TextEditingController();
-  final descricaoController = TextEditingController();
-  final precoController = TextEditingController();
+  final itemTitleController = TextEditingController();
+  final itemDescriptionController = TextEditingController();
+  final priceController = TextEditingController();
   final _productKey = GlobalKey<FormState>();
 
   @override
@@ -37,8 +30,8 @@ class DialogProduct extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextFormField(
-                controller: productController,
-                decoration: const InputDecoration(labelText: 'Produto'),
+                controller: itemTitleController,
+                decoration: const InputDecoration(labelText: 'Nome Item'),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
                 validator: (value) {
@@ -49,8 +42,8 @@ class DialogProduct extends StatelessWidget {
                 },
               ),
               TextFormField(
-                controller: descricaoController,
-                decoration: const InputDecoration(labelText: 'Descrição'),
+                controller: itemDescriptionController,
+                decoration: const InputDecoration(labelText: 'Descrição Item'),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
                 validator: (value) {
@@ -61,20 +54,12 @@ class DialogProduct extends StatelessWidget {
                 },
               ),
               TextFormField(
-                controller: precoController,
+                controller: priceController,
                 decoration: const InputDecoration(labelText: 'Preço'),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.done,
                 onFieldSubmitted: (value) {
-                  if (_productKey.currentState!.validate()) {
-                    saveProductValue.saveProduct(
-                      context,
-                      productController.text,
-                      descricaoController.text,
-                      double.parse(precoController.text),
-                      productValue,
-                    );
-                  }
+                  if (_productKey.currentState!.validate()) {}
                 },
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -84,22 +69,23 @@ class DialogProduct extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 10),
-              Consumer<TableConfig>(
+              Consumer<TableFunctions>(
                 builder: (context, value, child) => ElevatedButton(
-                  onPressed: () async {
+                  onPressed: () {
                     if (_productKey.currentState!.validate()) {
-                      final preco = double.parse(
-                          (precoController.text).replaceAll(',', '.'));
-                      saveProductValue.saveProduct(
-                        context,
-                        productController.text,
-                        descricaoController.text,
-                        preco,
-                        productValue,
+                      final price = double.parse(
+                          (priceController.text).replaceAll(',', '.'));
+                      final titleItem = itemTitleController.text;
+                      final desciptionItem = itemDescriptionController.text;
+
+                      value.insertItemsList(
+                        Items(
+                          titleItems: titleItem,
+                          descriptionItems: desciptionItem,
+                          priceItems: price,
+                        ),
                       );
-                      Database db = await DB.instance.database;
-                      value.insertNewElement(db, productController.text,
-                          descricaoController.text, preco);
+                      Navigator.of(context).pop();
                     }
                   },
                   child: const Padding(

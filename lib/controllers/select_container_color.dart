@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/models/container_colors.dart';
 
-class ContainerColorSelect extends ChangeNotifier {
+class SelectContainerColor extends ChangeNotifier {
   bool color1;
   bool color2;
   bool color3;
   bool color4;
-  ContainerColorSelect({
+  SelectContainerColor({
     this.color1 = false,
     this.color2 = false,
     this.color3 = false,
@@ -18,7 +17,7 @@ class ContainerColorSelect extends ChangeNotifier {
       color2 = false;
       color3 = false;
       color4 = false;
-      colorChange = ContainerColors.colors['color1'];
+      colorChange = '0xff2A7FDE';
       notifyListeners();
     }
   }
@@ -28,7 +27,7 @@ class ContainerColorSelect extends ChangeNotifier {
       color1 = false;
       color3 = false;
       color4 = false;
-      colorChange = ContainerColors.colors['color2'];
+      colorChange = '0xff3AC2F5';
       notifyListeners();
     }
   }
@@ -38,7 +37,7 @@ class ContainerColorSelect extends ChangeNotifier {
       color1 = false;
       color2 = false;
       color4 = false;
-      colorChange = ContainerColors.colors['color3'];
+      colorChange = '0xff2ADDDE';
       notifyListeners();
     }
   }
@@ -48,7 +47,7 @@ class ContainerColorSelect extends ChangeNotifier {
       color1 = false;
       color2 = false;
       color3 = false;
-      colorChange = ContainerColors.colors['color4'];
+      colorChange = '0xff30FAC2';
       notifyListeners();
     }
   }
