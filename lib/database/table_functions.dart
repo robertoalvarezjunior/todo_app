@@ -30,7 +30,7 @@ class TableFunctions extends ChangeNotifier {
       (txn) async {
         await txn.insert(
           'Items',
-          items.toMap(),
+          {'': items.toMap()},
           conflictAlgorithm: ConflictAlgorithm.replace,
         );
       },

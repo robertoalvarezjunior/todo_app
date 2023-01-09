@@ -25,22 +25,31 @@ class DB {
   }
 
   _createDB(Database db, version) async {
-    await db.execute('''
-      CREATE TABLE Department (
-      idDepartment INTEGER PRIMARY KEY AUTOINCREMENT,
-      titleDepartment TEXT,
-      colorDepartment TEXT
-      )
-    ''');
-    await db.execute('''
-      CREATE TABLE Items (
-      idItems INTEGER PRIMARY KEY AUTOINCREMENT,
-      titleItems TEXT,
-      descriptionItems TEXT,
-      priceItems REAL,
-      fkIdDepartment INTEGER,
-      FOREIGN KEY (fkIdDepartment) REFERENCES Department(idDepartment) ON DELETE CASCADE
-      ) 
-    ''');
+    await db.execute('''CREATE TABLE Item (
+        Id_Item INTEGER PRIMARY KEY,
+        Name_Item TEXT,
+        Description_Item TEXT
+        );''');
+
+    await db.execute('''CREATE TABLE Department (
+        Id_Depart INTEGER PRIMARY KEY,
+        Name_Depart TEXT
+        );''');
+
+    await db.execute('''CREATE TABLE Date_Price (
+    Id_Date_Price INTEGER PRIMARY KEY,
+    Date DATETIME,
+    Price REAL,
+    Id_Item INTEGER,
+    FOREIGN KEY(Id_Item) REFERENCES Item (Id_Item)
+    );''');
+
+    await db.execute('''CREATE TABLE List (
+    Id_List INTEGER PRIMARY KEY,
+    Id_Depart INTEGER,
+    Id_Item INTEGER,
+    FOREIGN KEY(Id_Depart) REFERENCES Department(Id_Depart),
+    FOREIGN KEY(Id_Item) REFERENCES Item (Id_Item)
+    );''');
   }
 }

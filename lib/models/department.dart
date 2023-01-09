@@ -9,7 +9,6 @@ class Department {
     this.titleDepartment,
     this.colorDepartment,
   });
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'idDepartment': idDepartment,
