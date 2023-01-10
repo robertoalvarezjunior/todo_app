@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controllers/select_container_color.dart';
-import 'package:todo_app/models/table_functions.dart';
 import 'package:todo_app/view/home_page.dart';
 import 'package:todo_app/view_model/list_table_view.dart';
 
@@ -12,9 +11,6 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => SelectContainerColor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => TableFunctions(),
         ),
         ChangeNotifierProvider(
           create: (context) => ListTableView(),

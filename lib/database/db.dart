@@ -25,31 +25,32 @@ class DB {
   }
 
   _createDB(Database db, version) async {
-    await db.execute('''CREATE TABLE Item (
-        Id_Item INTEGER PRIMARY KEY,
-        Name_Item TEXT,
-        Description_Item TEXT
+    await db.execute('''CREATE TABLE item (
+        idItem INTEGER PRIMARY KEY AUTOINCREMENT,
+        nameItem TEXT,
+        descriptionItem TEXT
         );''');
 
-    await db.execute('''CREATE TABLE Department (
-        Id_Depart INTEGER PRIMARY KEY,
-        Name_Depart TEXT
+    await db.execute('''CREATE TABLE department (
+        idDepart INTEGER PRIMARY KEY AUTOINCREMENT,
+        nameDepart TEXT,
+        colorDepart TEXT
         );''');
 
-    await db.execute('''CREATE TABLE Date_Price (
-    Id_Date_Price INTEGER PRIMARY KEY,
-    Date DATETIME,
-    Price REAL,
-    Id_Item INTEGER,
-    FOREIGN KEY(Id_Item) REFERENCES Item (Id_Item)
+    await db.execute('''CREATE TABLE datePrice (
+    idDatePrice INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATETIME,
+    price REAL,
+    idItem INTEGER,
+    FOREIGN KEY(idItem) REFERENCES item (idItem)
     );''');
 
-    await db.execute('''CREATE TABLE List (
-    Id_List INTEGER PRIMARY KEY,
-    Id_Depart INTEGER,
-    Id_Item INTEGER,
-    FOREIGN KEY(Id_Depart) REFERENCES Department(Id_Depart),
-    FOREIGN KEY(Id_Item) REFERENCES Item (Id_Item)
+    await db.execute('''CREATE TABLE list (
+    idList INTEGER PRIMARY KEY AUTOINCREMENT,
+    idDepart INTEGER,
+    idItem INTEGER,
+    FOREIGN KEY(idDepart) REFERENCES department (idDepart),
+    FOREIGN KEY(idItem) REFERENCES item (idItem)
     );''');
   }
 }

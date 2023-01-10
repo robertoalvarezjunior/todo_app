@@ -1,32 +1,25 @@
 import 'dart:convert';
 
 class Department {
-  int? idDepartment;
-  String? titleDepartment;
-  String? colorDepartment;
+  String nameDepart;
+  String? colorDepart;
   Department({
-    this.idDepartment,
-    this.titleDepartment,
-    this.colorDepartment,
+    required this.nameDepart,
+    this.colorDepart,
   });
+
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'idDepartment': idDepartment,
-      'titleDepartment': titleDepartment,
-      'colorDepartment': colorDepartment,
+      'nameDepart': nameDepart,
+      'colorDepart': colorDepart,
     };
   }
 
   factory Department.fromMap(Map<String, dynamic> map) {
     return Department(
-      idDepartment:
-          map['idDepartment'] != null ? map['idDepartment'] as int : null,
-      titleDepartment: map['titleDepartment'] != null
-          ? map['titleDepartment'] as String
-          : null,
-      colorDepartment: map['colorDepartment'] != null
-          ? map['colorDepartment'] as String
-          : '0xff30FAC2',
+      nameDepart: map['nameDepart'] as String,
+      colorDepart:
+          map['colorDepart'] != null ? map['colorDepart'] as String : null,
     );
   }
 

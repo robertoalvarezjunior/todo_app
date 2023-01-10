@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/database/db.dart';
 import 'package:todo_app/models/department.dart';
-import 'package:todo_app/models/items.dart';
+import 'package:todo_app/models/item.dart';
 
 class ListTableView extends ChangeNotifier {
   Future<List<Department>> getDepartment() async {
@@ -16,7 +16,7 @@ class ListTableView extends ChangeNotifier {
     return departmentList;
   }
 
-  Future<List<Items>> getItems(int idDepartment) async {
+  Future<List<Item>> getItems(int idDepartment) async {
     Database db = await DB.instance.database;
     var items = await db.query(
       'Items',
@@ -27,8 +27,8 @@ class ListTableView extends ChangeNotifier {
       ],
     );
 
-    List<Items> itemsList =
-        items.isNotEmpty ? items.map((e) => Items.fromMap(e)).toList() : [];
+    List<Item> itemsList =
+        items.isNotEmpty ? items.map((e) => Item.fromMap(e)).toList() : [];
     notifyListeners();
     return itemsList;
   }
