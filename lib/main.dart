@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/constants/constants.dart';
 import 'package:todo_app/controllers/select_container_color.dart';
-import 'package:todo_app/database/table_functions.dart';
-import 'package:todo_app/view/home_screen.dart';
-import 'package:todo_app/view/item_page.dart';
+import 'package:todo_app/models/table_functions.dart';
+import 'package:todo_app/view/home_page.dart';
 import 'package:todo_app/view_model/list_table_view.dart';
 
 void main() async {
@@ -36,8 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
-        ItemPage.routeItems: (context) => const ItemPage(),
+        '/': (context) => const HomePage(),
       },
       theme: ThemeData(
         useMaterial3: true,
@@ -52,25 +49,25 @@ class MyApp extends StatelessWidget {
         ),
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
               color: Color(0xff305AFA),
             ),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
               color: Theme.of(context).errorColor,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(
               color: Theme.of(context).errorColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+            borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
               color: Color(0xff305AFA),
             ),

@@ -25,7 +25,6 @@ class ListTableView extends ChangeNotifier {
         'descriptionItems',
         'priceItems',
       ],
-      // where: 'fkIdDepartment = ',
     );
 
     List<Items> itemsList =

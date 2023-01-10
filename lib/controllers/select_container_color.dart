@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/constants/constants.dart';
 
 class SelectContainerColor extends ChangeNotifier {
   bool color1;
@@ -17,7 +16,7 @@ class SelectContainerColor extends ChangeNotifier {
       color2 = false;
       color3 = false;
       color4 = false;
-      colorChange = '0xff2A7FDE';
+      // colorChange = '0xff2A7FDE';
       notifyListeners();
     }
   }
@@ -27,7 +26,7 @@ class SelectContainerColor extends ChangeNotifier {
       color1 = false;
       color3 = false;
       color4 = false;
-      colorChange = '0xff3AC2F5';
+      // colorChange = '0xff3AC2F5';
       notifyListeners();
     }
   }
@@ -37,7 +36,7 @@ class SelectContainerColor extends ChangeNotifier {
       color1 = false;
       color2 = false;
       color4 = false;
-      colorChange = '0xff2ADDDE';
+      // colorChange = '0xff2ADDDE';
       notifyListeners();
     }
   }
@@ -47,7 +46,7 @@ class SelectContainerColor extends ChangeNotifier {
       color1 = false;
       color2 = false;
       color3 = false;
-      colorChange = '0xff30FAC2';
+      // colorChange = '0xff30FAC2';
       notifyListeners();
     }
   }
