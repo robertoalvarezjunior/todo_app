@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => Container(),
+        '/': (context) => const HomePage(),
       },
       theme: ThemeData(
         useMaterial3: true,
