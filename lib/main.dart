@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/controllers/select_container_color.dart';
-import 'package:todo_app/view/home_page.dart';
-import 'package:todo_app/view_model/list_table_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => SelectContainerColor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ListTableView(),
-        ),
-      ],
+      providers: const [],
       child: const MyApp(),
     ),
   );
@@ -30,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => Container(),
       },
       theme: ThemeData(
         useMaterial3: true,
@@ -70,7 +60,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: const HomeScreen(),
     );
   }
 }
